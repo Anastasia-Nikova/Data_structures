@@ -55,7 +55,39 @@ public class LinkedList<T> implements List<T>
 	@Override
 	public void insertAt(T item, int index)
 	{
+		this.Exception(index);
 		
+		Node<T> newNode = new Node<T>(item);
+		
+		if (count == index + 1)
+		{
+			lastElement.setNextNode(newNode);
+			lastElement = newNode;
+			count++;
+		}
+		if (index == 0)
+		{
+			newNode.setNextNode(firstElement);
+			firstElement = newNode;
+			count++;
+		}
+		else
+		{
+			int currentIndex = 0;
+			Node<T>previousNode = firstElement;
+			while( currentIndex < index)
+			{
+				if(index - 1 == currentIndex)
+				{
+					Node<T>nextNode = previousNode.getNextNode();
+					previousNode.setNextNode(newNode);
+					newNode.setNextNode(nextNode);
+					count++;
+				}
+				previousNode = previousNode.getNextNode();
+				currentIndex++;
+			}
+		}
 	}
 
 	@Override
@@ -74,10 +106,8 @@ public class LinkedList<T> implements List<T>
 	@Override
 	public T get(int index) 
 	{
-		if (index >= count || index < 0)
-		{
-			throw new RuntimeException(" Invalid index ");
-		}
+
+		this.Exception(index);
 		
 		int currentIndex = 0;
 		Node<T> currentNode = firstElement;
@@ -100,5 +130,13 @@ public class LinkedList<T> implements List<T>
 		this.count = 0;
 		this.firstElement = null;
 		this.lastElement = null;
+	}
+	
+	private void Exception(int index)
+	{
+		if (index >= count || index < 0)
+		{
+			throw new RuntimeException(" Invalid index ");
+		}
 	}
 }

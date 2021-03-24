@@ -93,7 +93,26 @@ public class LinkedList<T> implements List<T>
 	@Override
 	public void removeFrom(int index) 
 	{
-		
+		this.Exception(index);
+		if (index == 0)
+		{
+			firstElement = firstElement.getNextNode();
+			this.count--;
+		}
+		else
+		{
+			Node<T> current = firstElement;
+			int i = 0 ;
+			while( i < index - 1)
+			{
+				current = current.getNextNode();
+				i++;
+			}
+			Node<T> previous = current;
+			current = current.getNextNode();
+			previous.setNextNode(current);
+			this.count--;
+		}
 		
 	}
 

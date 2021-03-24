@@ -119,7 +119,21 @@ public class LinkedList<T> implements List<T>
 	@Override
 	public void remove(T item) 
 	{
-
+		Node<T> current = firstElement;
+		if (firstElement.getNodeValue() == item)
+		{
+			firstElement = firstElement.getNextNode();
+			this.count--;
+		}
+		while(current.getNextNode() != null)
+		{
+			Node<T> next = current.getNextNode();
+			if(next.getNodeValue().equals(item))
+			{
+				current.setNextNode(next.getNextNode());
+				count--;
+			}
+		}
 	}
 
 	@Override

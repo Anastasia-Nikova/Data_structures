@@ -12,6 +12,8 @@ public class Test
 		System.out.println(arr.isEmpty());
 		arr.removeFrom(0);
 		System.out.println(arr.contains(2));
+		System.out.println(arr.isEmpty());
+		System.out.println(arr.get(0));
 	}
 
 }
